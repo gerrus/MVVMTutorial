@@ -4,7 +4,23 @@
       xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
       xmlns:local="using:MVVMTutorial.View"
       xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+      DataContext="{Binding Source={StaticResource Locator},
+                            Path=Main}"
       mc:Ignorable="d">
 
-    <Grid Background="{ThemeResource ApplicationPageBackgroundThemeBrush}" />
+    <Grid Background="{ThemeResource ApplicationPageBackgroundThemeBrush}">
+        <StackPanel Margin="12, 30, 0, 0">
+            <StackPanel Margin="0, 0, 0, 30" Orientation="Horizontal">
+                <TextBox Width="300"
+                         Margin="0, 0, 20, 0"
+                         Text="{Binding Path=Name,
+                                        Mode=TwoWay,
+                                        UpdateSourceTrigger=PropertyChanged,
+                                        FallbackValue=Tester}" />
+                <Button Command="{Binding Path=SayHello}" Content="Click me!" />
+            </StackPanel>
+
+            <TextBlock Style="{StaticResource HeaderTextBlockStyle}" Text="{Binding Path=Message, FallbackValue=Hier erscheint die Nachricht}" />
+        </StackPanel>
+    </Grid>
 </Page>
